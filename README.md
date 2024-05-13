@@ -33,4 +33,6 @@ Para utilizar esta APIREST:
   
   url para documentacion de la api: http://localhost:8000/docs
   
+  ~~
   
+Para ver, actualizar o borrar algun producto se debe ingresar en http://localhost:8000/api/v1/Productos e ingresar la ID del producto de la siguiente manera -> http://localhost:8000/api/v1/Productos/1/ o http://localhost:8000/api/v1/Productos/2/
