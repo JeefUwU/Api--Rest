@@ -29,7 +29,7 @@ class ProductoTestCase(TestCase):
         producto1 = Producto.objects.get(nombre="prueba1")
         producto2 = Producto.objects.get(nombre="prueba 2")
 
-                                #Integrales = No Funciona
+                                #Integrales = Funciona
 class productoTests(APITestCase):
     
     def setUp(self):
@@ -63,10 +63,7 @@ class productoTests(APITestCase):
         self.assertEqual(response.data['nombre'], 'prueba1')
 
     def test_producto_create(self):
-        # Definir la URL a la que se enviará la solicitud POST
-        url = reverse('producto-list')  # Ajusta 'producto-list' según tu configuración de URL
-
-        # Datos a enviar en la solicitud POST para crear un nuevo producto
+        url = reverse('producto-list')  
         data = {
             'codigo_producto': 'nuevo_producto',
             'marca': 'marca_nueva',
@@ -76,15 +73,13 @@ class productoTests(APITestCase):
             'fecha': '2024-06-16',
         }
 
-        # Enviar la solicitud POST y capturar la respuesta
         response = self.client.post(url, data, format='json')
     
         try:
             self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         except AssertionError:
-            print(response.data)  # Muestra los datos de la respuesta para entender el error
-            raise  # Re-lanza la excepción para que la prueba falle explícitamente si hay un error
+            print(response.data)
+            raise 
 
-        # Verificar que se haya creado un nuevo producto en la base de datos
-        self.assertEqual(Producto.objects.count(), 3)  # Asegúrate de ajustar este valor según corresponda
+        self.assertEqual(Producto.objects.count(), 3)
         self.assertEqual(Producto.objects.last().nombre, 'Nuevo Producto')
